@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<c3p0-config>
+	<default-config>
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://42.192.201.193:3306/workshop</property>
+		<property name="user">workshop</property>
+		<property name="password">workshop</property>
+		<property name="checkoutTimeout">30000</property>
+		<property name="initialPoolSize">10</property>
+		<property name="maxIdleTime">30</property>
+		<property name="maxPoolSize">100</property>
+		<property name="minPoolSize">10</property>
+		<property name="maxStatements">200</property>
+	</default-config> 
+	<named-config name="itcast">
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">
+           	jdbc:mysql://42.192.201.193:3306/workshop
+        </property>
+		<property name="user">workshop</property>
+		<property name="password">workshop</property>
+		<property name="initialPoolSize">5</property>
+		<property name="minPoolSize">5</property>
+		<property name="maxPoolSize">50</property>
+	</named-config>
+</c3p0-config>
