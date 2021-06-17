@@ -6,7 +6,7 @@ import org.apache.commons.dbutils.DbUtils;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-public class sqlDao {
+public class C3P0Dao {
     private static ComboPooledDataSource dataSource = null;
 
     static {

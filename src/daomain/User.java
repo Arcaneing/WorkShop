@@ -1,52 +1,70 @@
 package daomain;
 
-public class User {
-    int id;
-    String mail,username,pw;
+import java.io.Serializable;
 
-    static String
-        elm_tables = "user",
-        elm_items = "(id,name,password)",
-        elm_values = "(?,?,?)";
+public class User implements Serializable {
+    Integer id;
+    String name,password,mail;
 
-    static String
-        sql_insert = "insert into "+elm_tables+elm_items+elm_values;
-
-    public User(int id, String username,String pw){
-        this.id = id;
-        this.username = username;
-        this.pw = pw;
+    public User() {
     }
 
-    public void setId(int id) {
+    public User(Integer id, String password) {
         this.id = id;
+        this.password = password;
     }
 
-    public void setMail(String mail) {
+    public User(Integer id, String name, String password, String mail) {
+        this.id = id;
+        this.name = name;
+        this.password = password;
         this.mail = mail;
     }
 
-    public void setPw(String pw) {
-        this.pw = pw;
+    public User(String mail, String password) {
+        this.mail = mail;
+        this.password = password;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getMail() {
         return mail;
     }
 
-    public String getPw() {
-        return pw;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
-    public String getUsername() {
-        return username;
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", mail='" + mail + '\'' +
+                '}';
     }
 }

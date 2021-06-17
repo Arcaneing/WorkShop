@@ -1,20 +1,19 @@
 <%--
   Created by IntelliJ IDEA.
   User: ArcaneX
-  Date: 2021/6/16
-  Time: 11:17
+  Date: 2021/6/17
+  Time: 21:38
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Login - Brand</title>
+    <title>Register</title>
     <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="src/fonts/fonts.css">
     <link rel="stylesheet" href="src/fonts/fontawesome-all.min.css">
@@ -32,32 +31,21 @@
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="shopping-cart.html">首页</a></li>
                 <li class="nav-item"><a class="nav-link" href="contact-us.html">关于</a></li>
-                <c:if test="${param.loginInfo eq 'ok'}">
-                    <li class="nav-item"><a class="nav-link" href="/userinfo">${UserName}</a></li>
-                </c:if>
-                <c:if test="${param.loginInfo eq 'wrong'}">
-                    <li class="nav-item"><a class="nav-link" href="/register">注册</a></li>
-                </c:if>
             </ul>
         </div>
     </div>
 </nav>
-<main class="page login-page">
+<main class="page registration-page">
     <section class="clean-block clean-form dark">
         <div class="container">
             <div class="block-heading">
-                <h2 class="text-info">登录</h2>
-                <p>欢迎</p>
+                <h2 class="text-info">注册</h2>
+                <p>这里放注册简介</p>
             </div>
-            <form name="login" method="post" action="login">
-                <div class="form-group"><label for="email">Email</label><input class="form-control item" type="email" id="email" name="mail"></div>
-                <div class="form-group"><label for="password">Password</label><input class="form-control" type="password" id="password" name="password"></div>
-                <div class="form-group">
-                    <div class="form-check"><input class="form-check-input" type="checkbox" id="checkbox" name="checkbox"><label class="form-check-label" for="checkbox">Remember me</label></div>
-                <c:if test="${param.loginInfo eq 'wrong'}">
-                    <div role="alert" class="alert alert-success" style="color: #282821;background: #fc5e72;height: 45px;padding: 11px;"><span><strong>账户或密码错误</strong></span></div>
-                </c:if>
-                </div><button class="btn btn-primary btn-block" type="submit">登录</button></form>
+            <form method="post" name="reg" action="register">
+                <div class="form-group"><label for="name">Name</label><input class="form-control item" type="text" id="name" name="name"></div>
+                <div class="form-group"><label for="password">Password</label><input class="form-control item" type="password" id="password" name="password"></div>
+                <div class="form-group"><label for="email">Email</label><input class="form-control item" type="email" id="email"name="mail"></div><button class="btn btn-primary btn-block" type="submit">Sign Up</button></form>
         </div>
     </section>
 </main>
