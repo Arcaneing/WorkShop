@@ -16,7 +16,7 @@ public class GoodsImpl implements IGoodsDao {
     public boolean insert(Goods goods) {
         int insertCount = 0;
         try {
-            insertCount = queryRunner.update("insert into goods(id,name,price)value (?,?,?)",goods.getId(),goods.getName(),goods.getPrice());
+            insertCount = queryRunner.update("insert into goods(id,name,price,lable,img)value (?,?,?,?,?)",goods.getId(),goods.getName(),goods.getPrice(),goods.getLabel(),goods.getImg());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -27,7 +27,7 @@ public class GoodsImpl implements IGoodsDao {
     public boolean delete(Integer id) {
         int deleteCount = 0;
         try {
-            deleteCount = queryRunner.update("delete from user where id=?",id);
+            deleteCount = queryRunner.update("delete from goods where id=?",id);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -38,7 +38,7 @@ public class GoodsImpl implements IGoodsDao {
     public boolean update(Goods goods) {
         int updateCount = 0;
         try {
-            updateCount = queryRunner.update("update goods set name=?,price=? where id=?",goods.getName(),goods.getPrice(),goods.getId());
+            updateCount = queryRunner.update("update goods set name=?,price=?,lable=?,img=? where id=?",goods.getName(),goods.getPrice(),goods.getLabel(), goods.getImg(),goods.getId());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

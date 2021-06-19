@@ -7,6 +7,7 @@ public interface IUserDao {
     int insert(User user);
     int delete(Integer id);
     int update(User user);
+    boolean checkPermissions(int id);
     User findById(Integer id);
     User findByMail(String mail);
     List<User> findAll();

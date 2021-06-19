@@ -57,6 +57,9 @@
                 <c:if test="${param.loginInfo eq 'wrong'}">
                     <div role="alert" class="alert alert-success" style="color: #282821;background: #fc5e72;height: 45px;padding: 11px;"><span><strong>账户或密码错误</strong></span></div>
                 </c:if>
+                <c:if test="${param.register eq 'true'}">
+                    <div class="alert alert-success" role="alert"><span><strong>Register OK!</strong></span></div>
+                </c:if>
                 </div><button class="btn btn-primary btn-block" type="submit">登录</button></form>
         </div>
     </section>

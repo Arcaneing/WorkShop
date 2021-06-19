@@ -46,6 +46,9 @@
                 <div class="form-group"><label for="name">Name</label><input class="form-control item" type="text" id="name" name="name"></div>
                 <div class="form-group"><label for="password">Password</label><input class="form-control item" type="password" id="password" name="password"></div>
                 <div class="form-group"><label for="email">Email</label><input class="form-control item" type="email" id="email"name="mail"></div><button class="btn btn-primary btn-block" type="submit">Sign Up</button></form>
+            <c:if test="${param.register eq 'false'}">
+                <div role="alert" class="alert alert-success" style="color: #282821;background: #fc5e72;height: 45px;padding: 11px;"><span><strong>Mail Has Been used!</strong></span></div>
+            </c:if>
         </div>
     </section>
 </main>

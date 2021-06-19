@@ -4,6 +4,7 @@ import dao.IUserDao;
 import dao.C3P0Dao;
 import daomain.User;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.ArrayHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
@@ -14,13 +15,14 @@ public class UserDaoImpl implements IUserDao {
     private QueryRunner queryRunner = new QueryRunner(C3P0Dao.getDataSource());
     @Override
     public int insert(User user) {
-        int insertCount = 0;
+        if(findByMail(user.getMail()) != null)
+            return -1;
         try {
-            insertCount = queryRunner.update("insert into user(id,name,password,mail)value (?,?,?,?)",user.getId(),user.getName(),user.getPassword(),user.getMail());
+            queryRunner.update("insert into user(name,password,mail)value (?,?,?)",user.getName(),user.getPassword(),user.getMail());
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        return insertCount;
+        return findByMail(user.getMail()).getId();
     }
 
     @Override
@@ -42,6 +44,16 @@ public class UserDaoImpl implements IUserDao {
             throwables.printStackTrace();
         }
         return 0;
+    }
+
+    @Override
+    public boolean checkPermissions(int id) {
+        try {
+            return queryRunner.query("select * from admin where id=?",new ArrayHandler(),id).length != 0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 
     @Override
@@ -73,4 +85,5 @@ public class UserDaoImpl implements IUserDao {
         }
         return null;
     }
+
 }
