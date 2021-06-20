@@ -1,6 +1,8 @@
 package dao;
 
 import daomain.Goods;
+import daomain.imgs;
+
 import java.util.List;
 
 public interface IGoodsDao {
@@ -9,4 +11,9 @@ public interface IGoodsDao {
     boolean update(Goods goods);
     Goods findById(Integer id);
     List<Goods> findAll();
+    Integer getLength();
+    List<imgs> getAllImg();
+    List<imgs> getImgByID(Integer id);
+    String getMdById(Integer id);
+    boolean deleteImg(Integer id);
 }

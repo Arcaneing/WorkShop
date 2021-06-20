@@ -42,7 +42,7 @@
             </div>
             <div class="col-md-4 d-flex justify-content-end align-self-start"><i class="fas fa-search d-xl-flex justify-content-xl-center align-items-xl-center"></i><input class="border rounded d-xl-flex justify-content-xl-center align-items-xl-center search-field" type="search" id="search-field" style="background-color: #eaeaea;width: 80%;height: 38px;padding: 0px;margin-left: 17px;"
                                                                                                                                                                             name="search"><button class="btn btn-primary" type="button" style="width: 68px;">搜索</button></div>
-            <div class="col-md-4 d-flex justify-content-center align-items-center"><button class="btn btn-primary d-flex align-items-center align-self-center" type="button" style="height: 38px;background-color: rgb(21,221,4); " onclick="window.location.href='/WorkShop/build'">添加商品<i class="fa fa-plus-circle"></i></button></div>
+            <div class="col-md-4 d-flex justify-content-center align-items-center"><button class="btn btn-primary d-flex align-items-center align-self-center" type="button" style="height: 38px;background-color: rgb(21,221,4); " onclick="window.location.href='/build'">添加商品<i class="fa fa-plus-circle"></i></button></div>
         </div>
         <div class="row">
             <div class="col-md-12"><table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
@@ -64,7 +64,7 @@
                         <td>${goods.label}</td>
                         <td>${goods.price}</td>
                         <td><button type="button" class="btn btn-danger"><i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
-                            <button type="button" class="btn btn-warning"><i class="fas fa-pencil-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
+                            <button type="button" class="btn btn-warning" onclick="window.location.href='/editDetail?id=${goods.id}'"><i class="fas fa-pencil-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
                         </td>
                     </tr>
 

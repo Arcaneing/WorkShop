@@ -6,7 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <html>
 
 <head>
@@ -24,7 +25,10 @@
 
 <body>
 <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-    <div class="container"><i class="fas fa-shopping-bag" style="font-size: 24px;margin: 7px;"></i><a class="navbar-brand logo" href="#">商城</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="container"><i class="fas fa-shopping-bag" style="font-size: 24px;margin: 7px;"></i><a
+            class="navbar-brand logo" href="#">商城</a>
+        <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
         <div
                 class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
@@ -44,8 +48,14 @@
                     <div class="col-md-10 offset-md-1">
                         <div class="card m-auto" style="max-width:850px">
                             <div class="card-body">
-                                <form class="d-flex align-items-center"><i class="fas fa-search d-none d-sm-block h4 text-body m-0"></i><input class="form-control form-control-lg flex-shrink-1 form-control-borderless" type="search" placeholder="搜索的商品......" name="searchbar"><button class="btn btn-success btn-lg"
-                                                                                                                                                                                                                                                                                           type="submit" style="background: rgb(0,123,255);width: 87px;">搜索</button></form>
+                                <form class="d-flex align-items-center"><i
+                                        class="fas fa-search d-none d-sm-block h4 text-body m-0"></i><input
+                                        class="form-control form-control-lg flex-shrink-1 form-control-borderless"
+                                        type="search" placeholder="搜索的商品......" name="searchbar">
+                                    <button class="btn btn-success btn-lg"
+                                            type="submit" style="background: rgb(0,123,255);width: 87px;">搜索
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -58,17 +68,25 @@
                             <div class="filters">
                                 <div class="filter-item">
                                     <h3>标签标题</h3>
-                                    <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">标签选项</label></div>
+                                    <div class="form-check"><input class="form-check-input" type="checkbox"
+                                                                   id="formCheck-1"><label class="form-check-label"
+                                                                                           for="formCheck-1">标签选项</label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="d-md-none"><a class="btn btn-link d-md-none filter-collapse" data-toggle="collapse" aria-expanded="false" aria-controls="filters" href="#filters" role="button">Filters<i class="icon-arrow-down filter-caret"></i></a>
+                        <div class="d-md-none"><a class="btn btn-link d-md-none filter-collapse" data-toggle="collapse"
+                                                  aria-expanded="false" aria-controls="filters" href="#filters"
+                                                  role="button">Filters<i class="icon-arrow-down filter-caret"></i></a>
                             <div class="collapse"
                                  id="filters">
                                 <div class="filters">
                                     <div class="filter-item">
                                         <h3>标签标题</h3>
-                                        <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"><label class="form-check-label" for="formCheck-1">标签选项</label></div>
+                                        <div class="form-check"><input class="form-check-input" type="checkbox"
+                                                                       id="formCheck-1"><label class="form-check-label"
+                                                                                               for="formCheck-1">标签选项</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -77,25 +95,34 @@
                     <div class="col-md-9">
                         <div class="products">
                             <div class="row no-gutters">
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <div class="clean-product-item">
-                                        <div class="image"><a href="#"><img class="img-fluid d-block mx-auto" src="src/img/tech/image2.jpg"></a></div>
-                                        <div class="product-name"><a href="#">Lorem ipsum dolor sit amet</a></div>
-                                        <div class="about">
-                                            <div class="rating"><img src="src/img/star.svg"><img src="src/img/star.svg"><img src="src/img/star.svg"><img src="src/img/star-half-empty.svg"><img src="src/img/star-empty.svg"></div>
-                                            <div class="price">
-                                                <h3>$100</h3>
+                                <c:forEach items="${GoodsList}" var="goods">
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <div class="clean-product-item">
+                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto"
+                                                                                src="${goods.img}"></a></div>
+                                            <div class="product-name"><a href="#">${goods.name}</a></div>
+                                            <div class="about">
+                                                <div class="rating"><img src="src/img/star.svg"><img
+                                                        src="src/img/star.svg"><img src="src/img/star.svg"><img
+                                                        src="src/img/star-half-empty.svg"><img
+                                                        src="src/img/star-empty.svg"></div>
+                                                <div class="price">
+                                                    <h3>$${goods.price}</h3>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </c:forEach>
                             </div>
                             <nav>
                                 <ul class="pagination">
-                                    <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                    <li class="page-item disabled"><a class="page-link" href="#"
+                                                                      aria-label="Previous"><span
+                                            aria-hidden="true">«</span></a></li>
                                     <li class="page-item active"><a class="page-link" href="#">1</a></li>
                                     <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">»</span></a></li>
+                                    <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span
+                                            aria-hidden="true">»</span></a></li>
                                 </ul>
                             </nav>
                         </div>

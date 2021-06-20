@@ -12,7 +12,5 @@ public class AdminService {
     private final IUserDao iUserDao = new UserDaoImpl();
     private final IGoodsDao iGoodsDao = new GoodsImpl();
     MD5 md5 = new MD5();
-    public boolean addGoods(Goods goods){
-        return iGoodsDao.insert(goods);
-    }
+    public boolean checkAdmin(Integer id){return iUserDao.checkPermissions(id);}
 }

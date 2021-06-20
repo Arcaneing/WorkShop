@@ -34,7 +34,7 @@ public class loginServlet extends HttpServlet {
                 HttpSession session = request.getSession(); //获取Session对象
                 session.setAttribute("user",user);   //设置属性名user，保存user对象
                 if(userService.checkAdmin(user.getId())) {
-                    response.sendRedirect("/WorkShop/manage");
+                    response.sendRedirect("/manage");
                 }else{
                     response.sendRedirect("catalog.jsp");}
             } else {

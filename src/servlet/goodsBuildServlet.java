@@ -4,6 +4,7 @@ import com.jspsmart.upload.SmartUploadException;
 import daomain.Goods;
 import daomain.User;
 import service.AdminService;
+import service.GoodsService;
 import service.UserService;
 
 import javax.servlet.ServletException;
@@ -20,7 +21,7 @@ import com.jspsmart.upload.SmartUpload;
 public class goodsBuildServlet extends HttpServlet {
     private final UserService userService = new UserService();
     private final AdminService adminService = new AdminService();
-
+    private final GoodsService goodsService = new GoodsService();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         User user = (User) req.getSession().getAttribute("user");
@@ -47,8 +48,8 @@ public class goodsBuildServlet extends HttpServlet {
             String ext = file1.getFileExt();//获取文件后缀
             String filename = file1.hashCode() + "." + ext;
             file1.saveAs(filepath + filename);
-            Goods goods = new Goods(0, name, price, label, filename);
-            String build = adminService.addGoods(goods) ? "true" : "false";
+            Goods goods = new Goods(0, name, price, label, "http://localhost:8080/upload/"+filename);
+            String build = goodsService.addGoods(goods) ? "true" : "false";
             req.getRequestDispatcher("WEB-INF/admin/goods-build.jsp?build=" + build).forward(req, resp);
         } catch (SmartUploadException e) {
             e.printStackTrace();
