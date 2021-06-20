@@ -38,13 +38,13 @@
                 <h2 class="text-info">商品详情</h2>
                 <p>编辑商品详情页面</p>
             </div>
-            <form style="max-width: 1193px;"><label>商品ID</label><input class="form-control" type="text" name="name" readonly="" value="${Goods.id}">
+            <form style="max-width: 1193px;" action="/editDetail" method="post" enctype="multipart/form-data"><label>商品ID</label><input class="form-control" type="text" name="id" readonly="" value="${Goods.id}">
                 <div class="form-group"><label>商品名称</label><input class="form-control" type="text" placeholder="初始值" name="name" value="${Goods.name}"></div>
                 <div class="form-group"><label>商品标签</label><input class="form-control" type="text" name="label" value="${Goods.label}"></div>
-                <div class="form-group"><label>价格</label><input class="form-control" type="number" name="price" value="${Goods.price}"></div><div class="form-group">
+                <div class="form-group"><label>价格</label><input class="form-control" type="number" name="price" value="${Goods.price}" step="0.01"></div><div class="form-group">
                     <div class="mb-3">
                         <label for="formFileMultiple" class="form-label">选择要上传的图片</label>
-                        <input class="form-control" type="file" id="formFileMultiple" multiple>
+                        <input class="form-control" type="file" id="formFileMultiple" name="file" multiple>
                     </div>
                 </div>
                 <div class="form-group"></div>
@@ -60,9 +60,9 @@
                         <tbody>
                         <c:forEach items="${ImgList}" var="imgs">
                         <tr>
-                            <td>${imgs.id}</td>
+                            <td>${imgs.path}</td>
                             <td><img src="${imgs.path}"></td>
-                            <td><button type="button" class="btn btn-danger" style="background: rgb(255,0,51);" onclick="window.location.href='/editDetail?id=${Goods.id}&delete=${imgs.id}'"><i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
+                            <td><button type="button" class="btn btn-danger" style="background: rgb(255,0,51);" onclick="window.location.href='/editDetail?id=${Goods.id}&delete=${imgs.path}'"><i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
                             </td>
                         </tr>
                         </c:forEach>
@@ -70,13 +70,12 @@
                         </tbody>
                     </table></div>
                     <div id="test-editormd">
-                <textarea style="display:none;" name="md">
-                    ${md}
-                </textarea>
+                <textarea style="display:none;" name="md">${md}</textarea>
                     </div>
                     <button class="btn btn-primary btn-block" type="submit" style="background: rgb(0,123,255);">Send</button>
                 </div>
             </form>
+            <button class="btn btn-primary btn-block" style="background: rgb(0,123,255);" onclick="window.location.href='/manage'">BACK</button>
         </div>
     </section>
 </main>

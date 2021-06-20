@@ -50,7 +50,7 @@ public class goodsBuildServlet extends HttpServlet {
             file1.saveAs(filepath + filename);
             Goods goods = new Goods(0, name, price, label, "http://localhost:8080/upload/"+filename);
             String build = goodsService.addGoods(goods) ? "true" : "false";
-            req.getRequestDispatcher("WEB-INF/admin/goods-build.jsp?build=" + build).forward(req, resp);
+            resp.sendRedirect("/manage");
         } catch (SmartUploadException e) {
             e.printStackTrace();
             req.getRequestDispatcher("WEB-INF/admin/goods-build.jsp?build=false").forward(req, resp);

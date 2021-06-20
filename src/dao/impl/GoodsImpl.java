@@ -100,6 +100,13 @@ public class GoodsImpl implements IGoodsDao {
     }
 
     @Override
+    public String getImgFirstById(Integer id) {
+        List<imgs> list;
+        list = getImgByID(id);
+        return list.size() > 0 ? list.get(0).getPath() : null;
+    }
+
+    @Override
     public String getMdById(Integer id) {
         try {
             Object[] l = queryRunner.query("select * from md where id=?", new ArrayHandler(),id);
@@ -113,13 +120,36 @@ public class GoodsImpl implements IGoodsDao {
     }
 
     @Override
-    public boolean deleteImg(Integer id) {
+    public boolean deleteImg(String path) {
         int deleteCount = 0;
         try {
-            deleteCount = queryRunner.update("delete from imgs where id=?",id);
+            deleteCount = queryRunner.update("delete from imgs where path=?",path);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return deleteCount == 1;
     }
+
+    @Override
+    public boolean insertImg(imgs img) {
+        int insertCount = 0;
+        try {
+            insertCount = queryRunner.update("insert into imgs(path,id)value(?,?)",img.getPath(),img.getId());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return insertCount == 1;
+    }
+
+    @Override
+    public boolean updateMD(Integer Id, String md) {
+        int updateCount = 0;
+        try {
+            updateCount = queryRunner.update("update md set md=? where id=?",md,Id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return updateCount == 1;
+    }
+
 }

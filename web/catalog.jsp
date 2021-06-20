@@ -34,7 +34,8 @@
             <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item"><a class="nav-link" href="shopping-cart.html">首页</a></li>
                 <li class="nav-item"><a class="nav-link" href="contact-us.html">关于</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">这里放用户状态</a></li>
+                <li class="nav-item"><a class="nav-link" href="cart">购物车</a></li>
+<%--                <li class="nav-item"><a class="nav-link" href="#">这里放用户状态</a></li>--%>
             </ul>
         </div>
     </div>
@@ -98,7 +99,7 @@
                                 <c:forEach items="${GoodsList}" var="goods">
                                     <div class="col-12 col-md-6 col-lg-4">
                                         <div class="clean-product-item">
-                                            <div class="image"><a href="#"><img class="img-fluid d-block mx-auto"
+                                            <div class="image"><a href="/produce?id=${goods.id}"><img class="img-fluid d-block mx-auto"
                                                                                 src="${goods.img}"></a></div>
                                             <div class="product-name"><a href="#">${goods.name}</a></div>
                                             <div class="about">

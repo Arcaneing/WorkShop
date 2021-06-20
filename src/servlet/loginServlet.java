@@ -19,30 +19,33 @@ public class loginServlet extends HttpServlet {
         super();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        //设置服务器的编码集为utf-8格式，解决了post方式请求的汉子乱码问题
-        request.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=utf-8");
-        //获取输入文本框的内容，括号内为输入框的name属性
-        String mail= request.getParameter("mail");
-        String password = request.getParameter("password");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        req.setCharacterEncoding("utf-8");
+        resp.setContentType("text/html;charset=utf-8");
+        String mail= req.getParameter("mail");
+        String password = req.getParameter("password");
 
         try {
             if (userService.login(mail,password)){
 
                 User user = userService.getUserInfo(mail);
-                HttpSession session = request.getSession(); //获取Session对象
-                session.setAttribute("user",user);   //设置属性名user，保存user对象
+                HttpSession session = req.getSession();
+                session.setAttribute("user",user);
                 if(userService.checkAdmin(user.getId())) {
-                    response.sendRedirect("/manage");
+                    resp.sendRedirect("/manage");
                 }else{
-                    response.sendRedirect("catalog.jsp");}
+                    resp.sendRedirect("/catalog");}
             } else {
-                response.sendRedirect("login.jsp?loginInfo=wrong");
+                resp.sendRedirect("login.jsp?loginInfo=wrong");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        resp.sendRedirect("login.jsp");
     }
 }
 

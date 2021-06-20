@@ -30,9 +30,9 @@
     <div
             class="collapse navbar-collapse" id="navcol-1">
       <ul class="nav navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="shopping-cart.html">首页</a></li>
-        <li class="nav-item"><a class="nav-link" href="contact-us.html">关于</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">这里放用户状态</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.jsp">首页</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">关于</a></li>
+        <li class="nav-item"><a class="nav-link" href="login">登录</a></li>
       </ul>
     </div>
   </div>
@@ -61,7 +61,7 @@
     </div>
   </section>
 </main>
-<div class="social-icons" style="height: 150px;"><a href="#"><i class="fas fa-user"></i></a><a href="catalog.jsp"><i class="fas fa-shopping-bag"></i></a><a href="#"><i class="fas fa-shopping-cart"></i></a><a href="#"><i class="fas fa-clipboard-list"></i></a></div>
+<div class="social-icons" style="height: 150px;"><a href="login"><i class="fas fa-user"></i></a><a href="catalog"><i class="fas fa-shopping-bag"></i></a><a href="cart"><i class="fas fa-shopping-cart"></i></a><a href="payment"><i class="fas fa-clipboard-list"></i></a></div>
 <footer class="page-footer dark">
   <div class="container">
     <div class="row">

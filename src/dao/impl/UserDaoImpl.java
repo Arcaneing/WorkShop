@@ -3,6 +3,7 @@ package dao.impl;
 import dao.IUserDao;
 import dao.C3P0Dao;
 import daomain.User;
+import daomain.cart;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.ArrayHandler;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -84,6 +85,47 @@ public class UserDaoImpl implements IUserDao {
             throwables.printStackTrace();
         }
         return null;
+    }
+
+    @Override
+    public List<cart> findCartById(Integer user_id) {
+        try {
+            return (List<cart>) queryRunner.query("select * from cart where user_id=?",new BeanListHandler<cart>(cart.class),user_id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public boolean deletCartById(Integer id) {
+        int deleteCount = 0;
+        try {
+            deleteCount = queryRunner.update("delete from cart where id=?",id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return deleteCount == 1;
+    }
+
+    @Override
+    public boolean insertCart(cart c) {
+        try {
+            return queryRunner.update("insert into cart(user_id,goods_id,num)value (?,?,?)",c.getUser_id(),c.getGoods_id(),c.getNum()) == 1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateCart(cart c) {
+        try {
+            return queryRunner.update("update cart set num=? where id=?",c.getNum(),c.getId()) == 1;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return false;
     }
 
 }

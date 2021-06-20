@@ -46,7 +46,7 @@
                 <div class="form-group"><label for="name">商品标签</label><input class="form-control item" type="text"
                                                                              id="label" name="label"></div>
                 <div class="form-group"><label for="name">商品价格</label><input class="form-control item" type="number"
-                                                                             id="price" name="price"></div>
+                                                                             id="price" name="price" step="0.01"></div>
                 <div class="bootstrap_img_upload">
                     <div class="container py-5">
                         <header class="text-white text-center">

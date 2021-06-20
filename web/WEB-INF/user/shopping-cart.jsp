@@ -6,27 +6,30 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Shopping Cart - Brand</title>
-    <link rel="stylesheet" href="../../src/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../src/fonts/fonts.css">
-    <link rel="stylesheet" href="../../src/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="../../src/fonts/font-awesome.min.css">
-    <link rel="stylesheet" href="../../src/fonts/fontawesome5-overrides.min.css">
-    <link rel="stylesheet" href="../../src/css/baguetteBox.min.css">
-    <link rel="stylesheet" href="../../src/css/Lista-Productos-Canito.css">
-    <link rel="stylesheet" href="../../src/css/Search-Input-Responsive-with-Icon.css">
-    <link rel="stylesheet" href="../../src/css/smoothproducts.css">
+    <link rel="stylesheet" href="src/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="src/fonts/fonts.css">
+    <link rel="stylesheet" href="src/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="src/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="src/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="src/css/baguetteBox.min.css">
+    <link rel="stylesheet" href="src/css/Lista-Productos-Canito.css">
+    <link rel="stylesheet" href="src/css/Search-Input-Responsive-with-Icon.css">
+    <link rel="stylesheet" href="src/css/smoothproducts.css">
 </head>
 
 <body>
 <nav class="navbar navbar-light navbar-expand-lg fixed-top bg-white clean-navbar">
-    <div class="container"><i class="fas fa-shopping-bag" style="font-size: 24px;margin: 7px;"></i><a class="navbar-brand logo" href="#">商城</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="container"><i class="fas fa-shopping-bag" style="font-size: 24px;margin: 7px;"></i><a
+            class="navbar-brand logo" href="#">商城</a>
+        <button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                class="navbar-toggler-icon"></span></button>
         <div
                 class="collapse navbar-collapse" id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
@@ -47,31 +50,40 @@
             <div class="content">
                 <div class="row no-gutters">
                     <div class="col-md-12 col-lg-8">
-                        <div class="items">
+                        <div class="items" style="width: 1109px;">
                             <div class="product">
-                                <div class="row justify-content-center align-items-center">
-                                    <div class="col-md-3">
-                                        <div class="product-image"><img class="img-fluid d-block mx-auto image" src="assets/img/tech/image2.jpg"></div>
-                                    </div>
-                                    <div class="col-md-5 product-info"><a class="product-name" href="#">这里放商品名</a>
-                                        <div class="product-specs">
-                                            <div><span>Display:&nbsp;</span><span class="value">这里放型号</span></div>
-                                            <div><span>RAM:&nbsp;</span><span class="value">这里放RAM</span></div>
-                                            <div><span>Memory:&nbsp;</span><span class="value">这里放ROM</span></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6 col-md-2 quantity"><label class="d-none d-md-block" for="quantity">Quantity</label><input type="number" id="number" class="form-control quantity-input" value="1"></div>
-                                    <div class="col-6 col-md-2 price"><span>$这里放价格</span></div>
-                                </div>
+                                <table id="example" class="table table-striped table-bordered" width="100%">
+                                    <thead>
+                                    <tr>
+                                        <th>图片</th>
+                                        <th>商品名称</th>
+                                        <th>数量</th>
+                                        <th>价格</th>
+                                        <th>动作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach items="${cartLists}" var="cart">
+                                    <tr>
+                                        <td><img src="${cart.goods_image}" width="200" height="200"/></td>
+                                        <td>${cart.goods_name}</td>
+                                        <td>${cart.cart_num}</td>
+                                        <td>${cart.goods_price}</td>
+                                        <td>
+                                            <button class="btn btn-primary" type="button" style="  width: 38px;
+"><i class="fas fa-plus" onclick="window.location.href='/cart?plus=${cart.cart_id}&num=${cart.cart_num}'"></i></button>
+                                            <button class="btn btn-primary" type="button" style="  width: 38px;
+"><i class="fas fa-minus" onclick="window.location.href='/cart?minus=${cart.cart_id}&num=${cart.cart_num}'"></i></button>
+                                            <button class="btn btn-danger" type="button" style="  width: 38px;
+"><i class="fas fa-trash" onclick="window.location.href='/cart?delete=${cart.cart_id}&num=${cart.cart_num}'"></i></button>
+                                        </td>
+                                    </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
                             </div>
+                            <button class="btn btn-primary" type="button" onclick="window.location.href='/payment'">结算</button>
                         </div>
-                    </div>
-                    <div class="col-md-12 col-lg-4">
-                        <div class="summary">
-                            <h3>账单</h3>
-                            <h4><span class="text">总价</span><span class="price">$360</span></h4>
-                            <h4><span class="text">邮费</span><span class="price">$0</span></h4>
-                            <h4><span class="text">合计</span><span class="price">$360</span></h4><button class="btn btn-primary btn-block btn-lg" type="button">结算</button><button class="btn btn-primary btn-block btn-lg" type="button" style="background: #ed2893;">返回</button></div>
                     </div>
                 </div>
             </div>
@@ -95,11 +107,12 @@
         <p>© 2021 XXU ARCANE_X&nbsp;</p>
     </div>
 </footer>
-<script src="../../src/js/jquery.min.js"></script>
-<script src="../../src/bootstrap/js/bootstrap.min.js"></script>
-<script src="../../src/css/baguetteBox.min.js"></script>
-<script src="../../src/js/smoothproducts.min.js"></script>
-<script src="../../src/js/theme.js"></script>
+<script src="src/js/jquery.min.js"></script>
+<script src="src/bootstrap/js/bootstrap.min.js"></script>
+<script src="src/css/baguetteBox.min.js"></script>
+<script src="src/js/smoothproducts.min.js"></script>
+<script src="src/js/theme.js"></script>
+<script type="text/javascript" src="src/js/dang.js"></script>
 </body>
 
 </html>

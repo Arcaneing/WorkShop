@@ -14,6 +14,9 @@ public interface IGoodsDao {
     Integer getLength();
     List<imgs> getAllImg();
     List<imgs> getImgByID(Integer id);
+    String getImgFirstById(Integer id);
     String getMdById(Integer id);
-    boolean deleteImg(Integer id);
+    boolean deleteImg(String path);
+    boolean insertImg(imgs img);
+    boolean updateMD(Integer Id,String md);
 }

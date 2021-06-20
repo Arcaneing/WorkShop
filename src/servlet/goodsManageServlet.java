@@ -22,7 +22,8 @@ public class goodsManageServlet extends HttpServlet {
         if (user == null || !userService.checkAdmin(user.getId())) {
             resp.sendError(403);
         }
-
+        if(req.getParameter("delete") != null)
+            goodsService.deleteGoods(Integer.valueOf(req.getParameter("delete")));
         req.setAttribute("GoodsList",goodsService.getAllGoods());
         req.getRequestDispatcher("WEB-INF/admin/goods-manage.jsp").forward(req,resp);
     }

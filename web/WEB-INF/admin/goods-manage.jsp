@@ -63,7 +63,7 @@
                         <td>${goods.name}</td>
                         <td>${goods.label}</td>
                         <td>${goods.price}</td>
-                        <td><button type="button" class="btn btn-danger"><i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
+                        <td><button type="button" class="btn btn-danger" onclick="window.location.href='/manage?delete=${goods.id}'"><i class="far fa-trash-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
                             <button type="button" class="btn btn-warning" onclick="window.location.href='/editDetail?id=${goods.id}'"><i class="fas fa-pencil-alt d-xl-flex justify-content-xl-center align-items-xl-center"></i></button>
                         </td>
                     </tr>
